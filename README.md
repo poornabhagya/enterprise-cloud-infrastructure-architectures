@@ -14,11 +14,11 @@ Rather than relying on brittle shared-hosting setups or costly unmanaged cluster
 
 - **True Tenant Isolation:** Dedicated VPC per tenant (`10.0.0.0/16`, `10.1.0.0/16`, `10.2.0.0/16`) ensuring zero noisy-neighbor interference, independent route tables, and strict boundary containment.
 - **Dual-Tier Architectural Flexibility:** Provides two distinct delivery models:
-  - **Option 1 (AWS Lightsail Budget @ ~$12.43/mo):** Predictable flat-rate compute tier for cost-sensitive or micro-tier workloads.
+  - **Option 1 (AWS Lightsail Budget @ ~$12.43/mo):** Predictable flat-rate compute tier for cost-sensitive or micro-tier workloads[cite: 2].
   - **Option 2 (Dedicated EC2 VPC @ ~$12.62/mo):** Production-hardened ARM64 Graviton topology for enterprise compliance and private subnet isolation.
 - **FinOps-Driven Edge & Ingress:** Zero Route 53 DNS hosted zone overheads achieved via external Registrar / Cloudflare DNS management terminating on AWS CloudFront distributions and static IPv4 perimeters[cite: 4].
-- **Unified Platform Governance:** Shared cross-tenant telemetry via Amazon CloudWatch, immutable image distribution via Amazon ECR, parameter encryption via AWS Systems Manager Parameter Store, and proactive operational alerts through Amazon SNS.
-- **Automated Cold Archival:** Continuous offsite disaster recovery via automated daily snapshot transfers to Amazon S3 Standard, with policy-based lifecycle migration into Amazon S3 Glacier Flexible Retrieval.
+- **Unified Platform Governance:** Shared cross-tenant telemetry via Amazon CloudWatch, immutable image distribution via Amazon ECR, parameter encryption via AWS Systems Manager Parameter Store, and proactive operational alerts through Amazon SNS[cite: 2].
+- **Automated Cold Archival:** Continuous offsite disaster recovery via automated daily snapshot transfers to Amazon S3 Standard, with policy-based lifecycle migration into Amazon S3 Glacier Flexible Retrieval[cite: 2].
 
 ---
 
@@ -29,11 +29,11 @@ Rather than relying on brittle shared-hosting setups or costly unmanaged cluster
 - **Cost-Engineered Compute Layer:**  
   Workloads pair production WSGI/HTTP application engines, asynchronous task workers (Celery/Python), and local ACID relational databases (PostgreSQL) within a single hardened node, maintaining enterprise hosting costs below $13.00/month per tenant[cite: 4].
 - **Zero-Cost Edge Routing & Ingress:**  
-  DNS resolution is terminated externally via Registrar/Cloudflare CNAME/ALIAS records to AWS CloudFront Edge Distributions and public endpoints, eliminating recurring Route 53 zone fees ($0.50+/mo per zone)[cite: 4].
+  DNS resolution is terminated externally via Registrar/Cloudflare CNAME/ALIAS records to AWS CloudFront Edge Distributions and public endpoints, eliminating recurring Route 53 zone fees ($0.50+/mo per zone)[cite: 2, 4].
 - **Immutable Containerized Releases:**  
   Centralized CI/CD builds container artifacts and registers them into Amazon Elastic Container Registry (ECR), allowing compute nodes to pull version-tagged images directly over internal AWS backbone endpoints.
 - **Air-Gapped Disaster Recovery Pipeline:**  
-  All stateful database engines execute encrypted snapshot runs (`pg_dump`) nightly[cite: 4]. Backups are shipped to Amazon S3 Standard (SSE-S3 AES-256) and transitioned to S3 Glacier Flexible Retrieval after 30 days via automated lifecycle policies.
+  All stateful database engines execute encrypted snapshot runs (`pg_dump`) nightly[cite: 4]. Backups are shipped to Amazon S3 Standard (SSE-S3 AES-256) and transitioned to S3 Glacier Flexible Retrieval after 30 days via automated lifecycle policies[cite: 2].
 
 ---
 
@@ -75,11 +75,11 @@ Each tenant workload implements a two-tier environment progression model:
 All tenant workloads report into a centralized operations and telemetry plane:
 
 1. **AWS Systems Manager (Parameter Store):**  
-   Manages production environment variables, database credentials, and secret strings with KMS encryption, preventing plaintext secrets in version control.
+   Manages production environment variables, database credentials, and secret strings with KMS encryption, preventing plaintext secrets in version control[cite: 2].
 2. **Amazon CloudWatch Agent:**  
    Collects host metrics (CPU utilization, physical RAM consumption, swap file activity, and disk I/O) across compute instances.
 3. **Amazon SNS Telemetry:**  
-   Dispatches instant operational email alerts whenever compute memory exceeds 85% utilization or when automated backup cron jobs report non-zero exit codes.
+   Dispatches instant operational email alerts whenever compute memory exceeds 85% utilization or when automated backup cron jobs report non-zero exit codes[cite: 2].
 
 ---
 
