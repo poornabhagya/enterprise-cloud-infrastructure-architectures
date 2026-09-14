@@ -88,7 +88,6 @@ All tenant workloads report into a centralized operations and telemetry plane:
 - **Case Study 01: [Canmee Dairies ERP — Architecture & Implementation](01-canmee-dairies-erp/README.md)**
   - **Option 1 Blueprint:** [AWS Lightsail Budget Architecture (~$12.43/mo)](01-canmee-dairies-erp/architecture-options/option-1-lightsail-budget/README.md)
   - **Option 2 Blueprint:** [AWS EC2 Dedicated Hardened VPC (~$12.62/mo)](01-canmee-dairies-erp/architecture-options/option-2-ec2-dedicated-vpc-selected/README.md)
-  - **Implementation Roadmap:** [9-Phase End-to-End Delivery Roadmap](01-canmee-dairies-erp/ROADMAP.md)
   - **Automated Verification:** [Headless Route Scanner & View Tracer](01-canmee-dairies-erp/verification-scripts/)
 - **Case Study 02:** [Hardware Renting Platform Blueprint](02-hardware-renting-system/README.md)
 - **Case Study 03:** [Restaurant POS Engine Blueprint](03-restaurant-pos-system/README.md)
